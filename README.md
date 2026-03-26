@@ -1,50 +1,56 @@
-# Common Entrance Exam Clone
+# KCET System Documentation
 
-This repository is designed to serve as a clone of the Common Entrance Exam platform.
+## Project Overview
+The KCET System is designed to streamline the process of conducting and evaluating entrance exams for prospective engineering and medical students in Karnataka. It focuses on providing a transparent, efficient, and user-friendly platform for students and administrators alike.
 
-## Features
-- User Registration and Login
-- Exam Management
-- Performance Analytics
+## Technology Stack
+- **Frontend**: ReactJS
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: JWT
+- **Hosting**: AWS
 
-## Getting Started
-To get a local copy up and running follow these simple steps.
+## Database Schema
+- **Users**: 
+  - `userId`: String (Primary Key)
+  - `name`: String
+  - `email`: String
+  - `password`: String
+  - `role`: String (Admin/User)
 
-### Prerequisites
-Ensure you have **Node.js** and **npm** installed on your machine.
+- **Exams**: 
+  - `examId`: String (Primary Key)
+  - `title`: String
+  - `date`: Date
+  - `duration`: Number
 
-### Installation
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/Chandubr/common-entrance-exam-clone.git
-   ```
-2. Install the NPM packages:
-   ```bash
-   cd common-entrance-exam-clone
-   npm install
-   ```
-3. Start the application:
-   ```bash
-   npm start
-   ```
+- **Results**: 
+  - `resultId`: String (Primary Key)
+  - `userId`: String (Foreign Key)
+  - `examId`: String (Foreign Key)
+  - `score`: Number
+  - `status`: String (Pass/Fail)
 
-## Usage
-- Register as a new user to access the exam features.
-- Choose an exam to take from the dashboard.
+## Setup Instructions
+1. Clone the repository: `git clone https://github.com/Chandubr/common-entrance-exam-clone.git`
+2. Navigate to the project directory: `cd common-entrance-exam-clone`
+3. Install dependencies: `npm install`
+4. Set up environment variables in a `.env` file:
+   - `MONGODB_URI=<your_mongodb_uri>`
+   - `JWT_SECRET=<your_jwt_secret>`
+5. Start the application: `npm start`
 
-## Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+## API Documentation
+- **GET /api/exams** - Retrieve all exams.
+- **POST /api/exams** - Create a new exam.
+- **GET /api/results/:userId** - Retrieve results for a user.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Troubleshooting Guide
+- **Common Issues**:
+  - Ensure that MongoDB is running when starting the server.
+  - Verify that environment variables are correctly set.
 
-## License
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Acknowledgements
-- Thanks to the open-source community for the resources and support.
-
----
+## Best Practices
+- Regularly update dependencies to avoid security vulnerabilities.
+- Implement error handling for all API endpoints.
+- Write unit tests for critical functionalities.
